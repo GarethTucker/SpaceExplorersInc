@@ -22,7 +22,7 @@ public class State {
 		buildingCreator = new BuildingCreator();	
 		planetCreator = new PlanetCreator();
 		Planet earth = planetCreator.create("earth", new Point(150, 150));
-		Planet earth2 = planetCreator.create("earth", new Point(1000,1000));
+		Planet earth2 = planetCreator.create("earth", new Point(400,400));
 		planets.add(earth);
 		planets.add(earth2);
 		selectedPlanet = earth;		

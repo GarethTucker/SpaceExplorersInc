@@ -15,6 +15,7 @@ public abstract class Planet {
 	private double rotation = 0;	
 	protected ArrayList<BuildSpace> buildSpaces = new ArrayList<BuildSpace>();
 	protected Point center;
+	protected Point origin;
 	private Rectangle slider;
 	private int sliderHeight = 100;
 	protected BuildSpace selectedBuildSpace;
@@ -26,6 +27,7 @@ public abstract class Planet {
 		this.width = width;
 		this.slider = new Rectangle(x, y-sliderHeight, width, sliderHeight);
 		center = new Point(x+(width/2), y+(width/2));
+		origin = new Point(x+(width/2), y+(width/2));
 	}
 
 	public ArrayList<Resource> update() {
@@ -52,19 +54,27 @@ public abstract class Planet {
 	}
 
 	public void zoom(int wheelRotation) {
+		
 		scale = scale + (double)wheelRotation/10;		
 		if(scale <= 0.1){
 			scale = 0.1;
 		}
 		width = (int) (300*scale);
+		
+		
+		center.x = (int) ((origin.x - 300)*scale+300);
+		center.y = (int) ((origin.y - 300)*scale+300);
 		for(BuildSpace bs: buildSpaces){
 			bs.zoom(wheelRotation);
 		}
+		p("scale:"+scale+" x:"+center.x+" y:"+center.y);
 	}
 
 	public void move(int moveX, int moveY) {
 		center.x = center.x + moveX;	
 		center.y = center.y + moveY;
+		origin.x = center.x + moveX;	
+		origin.y = center.y + moveY;
 		for(BuildSpace bs: buildSpaces){
 			bs.move(moveX, moveY);
 		}

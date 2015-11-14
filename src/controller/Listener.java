@@ -21,7 +21,6 @@ public class Listener implements MouseListener, MouseMotionListener, ActionListe
 	private final State state;
 	private final MainPanel panel;
 	private int x,y;
-	//private final int MOVEAMOUNT = 15;
 	
 	public Listener(State state, MainPanel panel){
 		this.state = state;
@@ -52,16 +51,6 @@ public class Listener implements MouseListener, MouseMotionListener, ActionListe
 			int moveX = -(this.x - action.getX());
 			int moveY = -(this.y - action.getY());
 			for(Planet planet: state.getPlanets()){
-//				if(action.getX() > x){
-//					moveX = MOVEAMOUNT;
-//				}else if(action.getX() < x){
-//					moveX = -MOVEAMOUNT;
-//				}
-//				if(action.getY() > y){
-//					moveY = MOVEAMOUNT;
-//				}else if(action.getY() < y){
-//					moveY = -MOVEAMOUNT;
-//				}
 				planet.move(moveX, moveY);
 			}
 			this.x = action.getX();
